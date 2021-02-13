@@ -1,0 +1,172 @@
+html {
+    font-size: 14px;
+    /* 글자 크기 전부 적용  */
+}
+
+body {
+    font-family: 'Playfair Display', serif;
+    /* 폰트 */
+    background: url(/tablewood.jpg);
+    /* 이미지 */
+    background-size: auto 130px;
+    /* 이미지 반복 */
+
+}
+
+.leaflet {
+    perspective: 1500px;
+    /* 3D 웹 공간 크기 설정 */
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 30vw;
+    /* 창사이즈의 30% 만큼의 크기*/
+    height: 30vw;
+    /* 창사이즈의 30% 만큼의 크기*/
+    margin: auto;
+    /* 가운데 지정 */
+    transform-style: preserve-3d;
+    /* 3D 웹 공간 지정 */
+}
+
+/* 화면에 꽉차게 */
+.page {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* 클래스 page 안에 넓이를 100% 만큼 */
+    height: 100%;
+    /* 클래스 page 안에 높이를 100% 만큼 */
+    font-size: 3rem;
+    /* 글자 크기 3rem */
+    transform-style: preserve-3d;
+    /* 3D 웹 공간 지정 */
+    transition: 1s;
+    /* 1초동안 넘어가도록 */
+}
+
+
+.page:nth-child(1) {
+    z-index: 2;
+    /* 높으면 높을수록 화면 위로 올라옴  */
+    transform-origin: left;
+    /* 기준을 왼쪽 기준으로 */
+}
+
+.page:nth-child(3) {
+    z-index: 1;
+    /* 높으면 높을수록 화면 위로 올라옴  */
+    transform-origin: right;
+    /* 기분을 오른쪽 기준으로 */
+}
+
+.page:nth-child(1).page-flipped {
+    /* 1번쨰 안쪽 페이지를 -150도 만큼 돌려둠 */
+    transform: rotateY(-150deg);
+}
+
+.page:nth-child(3).page-flipped {
+    /* 3번쨰 안쪽 페이지를 150도 만큼 돌려둠 */
+    transform: rotateY(150deg);
+}
+
+.page-face {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: cornsilk;
+    /* 배경색상 */
+    backface-visibility: hidden;
+    /* 뒤집었을떄 뒷면이 안보임 */
+}
+
+.page-face:nth-child(2) {
+    transform: rotateY(180deg);
+    /* 2번쨰 페이지를 180도 만큼 돌림 */
+}
+
+/* B1, B2, B3 의 색상을 변경*/
+.page:nth-child(1) .page-face:nth-child(2),
+/*1번쨰 페이지중 2번쨰 인 안쪽 페이지*/
+.page:nth-child(2) .page-face:nth-child(1),
+/*2번쨰 페이지중 1번쨰 인 밖쪽 페이지*/
+.page:nth-child(3) .page-face:nth-child(2)
+
+/*3번쨰 페이지중 2번쨰 인 안쪽 페이지*/
+    {
+    background: #fff;
+}
+
+/* 여기까지 */
+
+.cover-page {
+    display: flex;
+    /* 가운데 정열 */
+    flex-direction: column;
+    /* 위아래 배치 */
+    justify-content: center;
+    /* 가운데 정열 */
+    align-items: center;
+    /* 가운데 정열 */
+    font-size: 1.5rem;
+    /* 글자 크기 */
+}
+
+.cover-page::before {
+    content: "";
+    /* 내용이 없더라도 표시 */
+    display: block;
+    position: absolute;
+    left: 10px;
+    right: 10px;
+    top: 10px;
+    bottom: 10px;
+    border: 1px solid tan;
+    /* 표지 선 디자인 */
+}
+
+.menu-header-title {
+    /* 폰트 */
+    font-family: 'Courgette', cursive;
+}
+
+.menu-list {
+    /* 글자 크기 */
+    font-size: 0.7rem;
+}
+
+.menu-item {
+    display: flex;
+    /* 고정 */
+    align-items: center;
+    /* 가운데 정렬 */
+    position: relative;
+    padding: 2em;
+}
+
+.close-btn {
+    display: none;
+    /* 설정 없음 */
+    position: absolute;
+    /* 오른쪽 위로 붙음 */
+    top: -2rem;
+    /* 위치 선정 */
+    right: 10px;
+    /* 위치 선정 */
+    font-size: 1.2rem;
+    /* 글자 크기 */
+    color: #fff;
+    /* 글자 색 */
+    background-color: rgba(0, 0, 0, 0.1);
+    /* rgba(색상, 색상, 색상, 투명도)*/
+}
+
+.leaflet-opened .close-btn {
+    /*화면이 열렸을때 .close-btn클래스가 화면에 나옴*/
+    display: inline-block;
+}
